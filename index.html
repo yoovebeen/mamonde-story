@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fullpage.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="fullpage.min.js"></script>
+    <title>brand-story</title>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="logo">
+    </header>
+
+    <div id="full-page">
+        <div class="section s0">
+            <div class="container">
+                <h1>하이퍼 플로라로 피어나는<br>나다운 아름다움</h1>
+                <div class="scroll-down"></div>
+            </div>
+        </div>
+        <div class="section s1">
+            <video id="video-01" autoplay muted loop>
+                <source src="01.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="section s2">
+            <div class="text">
+                <h2>자신만의 독특한 방식으로<br>삶을 꽃 피울 수 있도록</h2>
+                <p>중요하지만 자칫 복잡하게 느껴질 수 있는 개념을 흥미로우면서도 직관적으로 이해할 수 있는 세 개 챕터로 구성된 영상에 담았습니다.<br>여러 꽃들 사이에 흩어져 있는 형상이 하나로 결합되며 이전과는 다른 입체적인 모습의 새로운 꽃으로 탄생합니다.</p>
+            </div>
+
+            <div class="box">
+                <img src="01.gif">
+                <img src="02.gif">
+                <img src="03.gif">
+            </div>
+        </div>
+        <!-- <div class="section s3">
+            <h2>Section 3</h2>
+        </div> -->
+    </div>
+
+    <script>
+        new fullpage('#full-page', {
+            licenseKey: '',
+            sectionsColor: ['#ffffff', '#000000', '#ffffff'],
+            navigation: true,
+            scrollingSpeed: 1200,
+            paddingTop: '60px'
+        });
+
+        const video = document.getElementById('video-01');
+        video.autoplay = true;
+        video.muted = true;
+        video.play();
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const header = document.querySelector('header');
+        header.style.backgroundColor = 'transparent';
+        });
+
+        window.addEventListener('scroll', function() {
+        const videoSection = document.querySelector('.video-section');
+        const headerElement = document.querySelector('header');
+
+        if (isElementInViewport(videoSection)) { 
+        headerElement.style.backgroundColor = getComputedStyle(videoSection).backgroundColor;
+        } else {
+        headerElement.style.backgroundColor = 'transparent'; // 기본 header 색상
+        }
+        });
+
+        function isElementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+        }
+
+    </script>
+</body>
+
+</html>
